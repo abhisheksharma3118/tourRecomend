@@ -1,0 +1,23 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}
+<h2>Tour list</h2>
+{% endblock %}
+
+{% block content %}
+{% if tour_list %}
+<div class="row">
+    {% for tour in tour_list %}
+    <div class="col-xs-6 col-lg-4">
+        <h4><a href="{% url 'reviews:tour_detail' tour.id %}">
+        {{ tour.name }}
+        </a></h4>
+        <h5>{{ tour.review_set.count }} reviews</h5>
+        <h5>{{ tour.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No tours are available.</p>
+{% endif %}
+{% endblock %}
